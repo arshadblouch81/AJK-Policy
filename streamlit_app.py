@@ -79,7 +79,7 @@ def main():
 
     retriever.batch(["what is total population of AJK", "What is size of male and female population"])
     #openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = "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" #os.getenv("OPENAI_API_KEY")
     st.write(openai.api_key)
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.5,
     max_tokens=1024,
