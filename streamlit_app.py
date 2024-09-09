@@ -94,7 +94,8 @@ def main():
         # Display the input
         if user_input and submit:          
            # response = rag_chain.invoke(user_input)
-            #st.write(response.content)
+           #st.write(response.content)
+           st.write(use_input)
 
     # When the user clicks 'Exit', stop the loop
     else:
