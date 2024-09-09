@@ -78,7 +78,12 @@ def main():
     retriever = RunnableLambda(vectorstore2.similarity_search).bind(k=1)  # select top result
 
     retriever.batch(["what is total population of AJK", "What is size of male and female population"])
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    openai.api_key = st.secrets["openai"]["api_key"]
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.5,
+    max_tokens=1024,
+    timeout=None,
+    max_retries=2,
+    api_key=api_key)
 
 
     message = """
