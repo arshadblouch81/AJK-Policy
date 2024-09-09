@@ -2,7 +2,7 @@
 #from langchain_community.document_loaders import DirectoryLoader
 # Specify the path to your PDF file
 #from langchain_community.document_loaders import PyPDFLoader
-#from langchain_chroma import Chroma
+from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 
 
