@@ -65,7 +65,7 @@ def main():
     # Create a session state to keep track of whether the app is running
     
       
-    model = ChatOpenAI(model="gpt-3.5-turbo")
+    #model = ChatOpenAI(model="gpt-3.5-turbo")
     MYPATH = "Kashmir Digital Policy 2024-2030 Sept 6.pdf"
     pdf_path = MYPATH
     documents = get_file_text(pdf_path)
