@@ -2,7 +2,7 @@ from langchain_core.documents import Document
 from langchain_community.document_loaders import DirectoryLoader
 # Specify the path to your PDF file
 from langchain_community.document_loaders import PyPDFLoader
-#from langchain_chroma import Chroma
+from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 
 
@@ -127,9 +127,9 @@ def main():
             st.session_state.running = False
         # Display the input
         if user_input and submit:          
-           # response = rag_chain.invoke(user_input)
-           #st.write(response.content)
-           st.write(use_input)
+           response = rag_chain.invoke(user_input)
+           st.write(response.content)
+           #st.write(use_input)
 
     # When the user clicks 'Exit', stop the loop
     else:
