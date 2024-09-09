@@ -75,7 +75,7 @@ def main():
 
     retriever.batch(["what is total population of AJK", "What is size of male and female population"])
     #openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
-    openai.api_key =  os.getenv("OPENAI_API_KEY")
+    openai.api_key =  "" #os.getenv("OPENAI_API_KEY")
     st.write(openai.api_key)
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.5,
     max_tokens=1024,
@@ -95,7 +95,7 @@ def main():
 
     prompt = ChatPromptTemplate.from_messages([("human", message)])
 
-    #rag_chain = {"context": retriever, "question": RunnablePassthrough()} | prompt | llm
+    rag_chain = {"context": retriever, "question": RunnablePassthrough()} | prompt | llm
  
   
     
