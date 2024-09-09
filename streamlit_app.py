@@ -1,71 +1,11 @@
-from langchain_core.documents import Document
-from langchain_community.document_loaders import DirectoryLoader
-# Specify the path to your PDF file
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
 
-
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_openai import ChatOpenAI
-
-
-from langchain_core.runnables import RunnableLambda
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
-
-from langchain_core.documents import Document
 import streamlit as st
 import os
-
- 
-
-
-def get_file_text(pdf_path):
-  loader = PyPDFLoader(pdf_path)
-  docs=loader.load()
-  documents=[]
-  documents.extend((Document(page_content=doc.page_content,metadata=doc.metadata) for doc in docs))
-  return documents
-
-
-
-
-
-def get_file_text(pdf_path):
-  loader = PyPDFLoader(pdf_path)
-  docs=loader.load()
-  documents=[]
-  documents.extend((Document(page_content=doc.page_content,metadata=doc.metadata) for doc in docs))
-  return documents
-
-
-
-
-
-# def get_file_text(file_path):
-#   # Initialize the loader
-#   #loader = DirectoryLoader(file_path)
-#   loader = DirectoryLoader(file_path, glob="**/*.md")
-#   documents_files = loader.load()
-#   len(documents_files)
-#   documents = []
-#   # Load the document
-  
-#   documents.extend((Document(page_content=doc.content,metadata=doc.Metadata) for doc in documents_files))
-
-  
-#   return documents
-
-
 
 
 def main():
     # Create a session state to keep track of whether the app is running
-    
-      
-  
+ 
     
     # Create a session state to keep track of whether the app is running
     if 'running' not in st.session_state:
