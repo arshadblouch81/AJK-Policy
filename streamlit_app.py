@@ -2,7 +2,7 @@ from langchain_core.documents import Document
 from langchain_community.document_loaders import DirectoryLoader
 # Specify the path to your PDF file
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_chroma import Chroma
+#from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 
 
@@ -61,41 +61,41 @@ def get_file_text(pdf_path):
 def main():
     # Create a session state to keep track of whether the app is running
     
-    #  #model = ChatOpenAI(model="gpt-3.5-turbo")
-    # MYPATH = "Kashmir Digital Policy 2024-2030 Sept 6.pdf"
-    # pdf_path = MYPATH
-    # documents = get_file_text(pdf_path)
-    # vectorstore2 = Chroma.from_documents(
-    #     documents,
-    #     embedding=OpenAIEmbeddings(),
-    # )
+     #model = ChatOpenAI(model="gpt-3.5-turbo")
+    MYPATH = "Kashmir Digital Policy 2024-2030 Sept 6.pdf"
+    pdf_path = MYPATH
+    documents = get_file_text(pdf_path)
+    vectorstore2 = Chroma.from_documents(
+        documents,
+        embedding=OpenAIEmbeddings(),
+    )
+
+   
+    retriever = RunnableLambda(vectorstore2.similarity_search).bind(k=1)  # select top result
+
+    retriever.batch(["what is total population of AJK", "What is size of male and female population"])
+    #openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
+    openai.api_key =  os.getenv("OPENAI_API_KEY")
+    #st.write(openai.api_key)
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.5,
+    max_tokens=1024,
+    timeout=None,
+    max_retries=2,
+    api_key=api_key)
 
 
-    # retriever = RunnableLambda(vectorstore2.similarity_search).bind(k=1)  # select top result
+    message = """
+    Answer this question using the provided context only.
 
-    # retriever.batch(["what is total population of AJK", "What is size of male and female population"])
-    # #openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
-    # openai.api_key =  os.getenv("OPENAI_API_KEY")
-    # st.write(openai.api_key)
-    # llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.5,
-    # max_tokens=1024,
-    # timeout=None,
-    # max_retries=2,
-    # api_key=api_key)
+    {question}
 
+    Context:
+    {context}
+    """
 
-    # message = """
-    # Answer this question using the provided context only.
+    prompt = ChatPromptTemplate.from_messages([("human", message)])
 
-    # {question}
-
-    # Context:
-    # {context}
-    # """
-
-    # prompt = ChatPromptTemplate.from_messages([("human", message)])
-
-    # rag_chain = {"context": retriever, "question": RunnablePassthrough()} | prompt | llm
+    rag_chain = {"context": retriever, "question": RunnablePassthrough()} | prompt | llm
  
   
     
