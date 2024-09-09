@@ -6,10 +6,9 @@
 # from langchain_openai import OpenAIEmbeddings
 
 
- from langchain.chains.combine_documents import create_stuff_documents_chain
- from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
- from langchain_openai import ChatOpenAI
-
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_openai import ChatOpenAI
 
 from langchain_core.runnables import RunnableLambda
 from langchain_core.prompts import ChatPromptTemplate
