@@ -11,9 +11,9 @@
 # from langchain_openai import ChatOpenAI
 
 
-# from langchain_core.runnables import RunnableLambda
-# from langchain_core.prompts import ChatPromptTemplate
-# from langchain_core.runnables import RunnablePassthrough
+from langchain_core.runnables import RunnableLambda
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
 
 from langchain_core.documents import Document
 import streamlit as st
