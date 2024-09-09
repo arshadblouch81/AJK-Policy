@@ -1,4 +1,21 @@
+from langchain_core.documents import Document
+from langchain_community.document_loaders import DirectoryLoader
+# Specify the path to your PDF file
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_chroma import Chroma
+from langchain_openai import OpenAIEmbeddings
 
+
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_openai import ChatOpenAI
+
+
+from langchain_core.runnables import RunnableLambda
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+
+from langchain_core.documents import Document
 import streamlit as st
 import os
 
