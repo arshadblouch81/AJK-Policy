@@ -65,42 +65,7 @@ def main():
     # Create a session state to keep track of whether the app is running
     
       
-    #model = ChatOpenAI(model="gpt-3.5-turbo")
-    MYPATH = "Kashmir Digital Policy 2024-2030 Sept 6.pdf"
-    pdf_path = MYPATH
-    documents = get_file_text(pdf_path)
-    vectorstore2 = Chroma.from_documents(
-        documents,
-        embedding=OpenAIEmbeddings(),
-    )
-
-
-    retriever = RunnableLambda(vectorstore2.similarity_search).bind(k=1)  # select top result
-
-    retriever.batch(["what is total population of AJK", "What is size of male and female population"])
-    #openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
-    openai.api_key =  os.getenv("OPENAI_API_KEY")
-    st.write(openai.api_key)
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.5,
-    max_tokens=1024,
-    timeout=None,
-    max_retries=2,
-    api_key=api_key)
-
-
-    message = """
-    Answer this question using the provided context only.
-
-    {question}
-
-    Context:
-    {context}
-    """
-
-    prompt = ChatPromptTemplate.from_messages([("human", message)])
-
-    rag_chain = {"context": retriever, "question": RunnablePassthrough()} | prompt | llm
-
+  
     
     # Create a session state to keep track of whether the app is running
     if 'running' not in st.session_state:
